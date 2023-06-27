@@ -5,4 +5,5 @@
 int _printf(const char *format, ...);
 int _puts(char *c);
 void _switch (const char *format, unsigned int x, va_list ap, int n, int count);
+int _strlen(char *s);
 #endif

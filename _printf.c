@@ -68,7 +68,7 @@ void _switch(const char *format, unsigned int x, va_list ap, int n, int count)
 			str = va_arg(ap, char *);
 			if (str != 0)
 			{
-				count += strlen(str);
+				count += _strlen(str);
 				_puts(str);
 			}
 			return;
