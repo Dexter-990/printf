@@ -15,9 +15,9 @@
 
 int _printf(const char *format, ...)
 {
-	unsigned int x = 0;
+	int x = 0;
 	va_list ap;
-	int n, count = 0;
+	int count = 0, byte = 0;
 
 	va_start(ap, format);
 	while (format && format[x])
@@ -25,14 +25,15 @@ int _printf(const char *format, ...)
 		if (format[x] == '%')
 
 		{
-			_switch(format, x, ap, n, count);
-			x++;
+			byte = print_type(format[x + 1], ap, &x);
+			if (byte == -1)
+				return (-1);
+			count += byte;
 		}
 		else
 		{
-			n = write(1, &format[x], 1);
-			if (n > -1)
-				count++;
+			write(1, &format[x], 1);
+			count++;
 		}
 		x++;
 	}
@@ -40,43 +41,3 @@ int _printf(const char *format, ...)
 	return (count);
 }
 
-/**
- *_switch - uses switch call
- *
- *@format: string
- *@x: integer
- *@ap: va_list pointer
- *@n: integer
- *@count: number of bytes of the string printed
- */
-
-void _switch(const char *format, unsigned int x, va_list ap, int n, int count)
-{
-	char *str, ch;
-
-	switch (format[++x])
-	{
-		case 'c':
-			ch = va_arg(ap, int);
-			n = write(1, &ch, 1);
-			if (n > -1)
-				count += 1;
-			return;
-		case 's':
-			str = va_arg(ap, char *);
-			if (str != 0)
-			{
-				count += _strlen(str);
-				_puts(str);
-			}
-			return;
-		case '%':
-			str = "%";
-			_puts(str);
-			return;
-		default:
-			str = "%";
-			_puts(str);
-			write(1, &format[x], 1);
-	}
-}
