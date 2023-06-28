@@ -3,7 +3,7 @@
 /**
  * print_char - prints character
  *
- * @c: character
+ * @ap: character
  *
  * Return: number of bytes printed
  */
