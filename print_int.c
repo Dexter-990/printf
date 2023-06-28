@@ -10,7 +10,7 @@
 int print_int(va_list ap)
 {
 	int number = va_arg(ap, int);
-	char *ptr = malloc(sizeof(char) * 100);
+	char *ptr = malloc(sizeof(char) * 10000);
 	int x = 0, isneg = 0, count = 0;
 
 	if (ptr != NULL)
