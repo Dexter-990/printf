@@ -20,7 +20,10 @@ int _printf(const char *format, ...)
 	int count = 0, byte = 0;
 
 	va_start(ap, format);
-	while (format && format[x])
+
+	if (format == NULL)
+		return (-1);
+	while (format[x])
 	{
 		if (format[x] == '%')
 
