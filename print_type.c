@@ -17,7 +17,9 @@ int print_type(char spec, va_list ap, int *pos)
 	def ptr[] = {
 		{'c', print_char},
 		{'s', print_s},
-		{'%', print_perc}
+		{'%', print_perc},
+		{'d', print_int},
+		{'i', print_int}
 	};
 
 	while (ptr[x].spec)
